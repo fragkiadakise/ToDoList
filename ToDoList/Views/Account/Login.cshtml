@@ -1,0 +1,56 @@
+﻿@model ToDoList.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    ViewBag.ErroMessage = "";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="~/css/mycss.css" />
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Login</h1>
+        <hr />
+
+        <form action="/Account/Login" method="post">
+
+            <div class="row myRow">
+                <div class="col-5">
+                    <label for="email">Email</label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email", required = true })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row myRow">
+                <div class="col-5">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required />
+                </div>
+            </div>
+            <div class="mt-2">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+        <div class="container col-sm-6 mt-4">
+            @* Display error message *@
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger">
+                    @ViewBag.ErrorMessage
+                </div>
+            }
+        </div>
+        <div class="text-center mt-3">
+            <!-- Link to the Register page -->
+            Don't have an account? <a href="@Url.Action("Register", "Account")">Sign up</a>
+        </div>
+    </div>
+</body>
+</html>
+

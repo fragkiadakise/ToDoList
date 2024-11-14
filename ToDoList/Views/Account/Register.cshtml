@@ -1,0 +1,67 @@
+﻿@model ToDoList.ViewModels.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+    ViewBag.ErroMessage = "";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="~/css/mycss.css" />
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Register</h1>
+        <hr />
+        <form action="/Account/Register" method="post">
+
+            <div class="row myRow">
+                <div class="col-5">
+                    <label for="username">Username:</label>
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Enter username", required = true })
+                </div>
+            </div>
+            <div class="row myRow">
+                <div class="col-5">
+                    <label for="email">Email:</label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", minlength = "8", placeholder = "Enter email", required = true })
+                </div>
+            </div>
+            <div class="row myRow">
+                <div class="col-5">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required />
+                </div>
+            </div>
+            <div class="row myRow">
+                <div class="col-5">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
+                </div>
+            </div>
+            <div class="mt-2">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+        <div class="container col-sm-6 mt-4">
+            @* Display error message *@
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger justify-content-start">
+                     @Html.Raw(@ViewBag.ErrorMessage)
+                </div>
+            }
+        </div>
+        <div class="text-center mt-3">
+            <!-- Link to the Register page -->
+            Already have an account? <a href="@Url.Action("Login", "Account")">Sign in</a>
+        </div>
+    </div>
+</body>
+</html>
+
